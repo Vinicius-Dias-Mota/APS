@@ -6,8 +6,8 @@ class OperacaoFabrica(object):
     def criar(self, operador):
         if operador == 'operacao_soma':
             return operacao_soma()
-        elif operador == 'operacao_divisão':
-            return operacao_divisão()
+        elif operador == 'operacao_divisao':
+            return operacao_divisao()
         elif operador == 'operacao_subtracao':
             return operacao_subtracao()
         elif operador == 'operacao_multiplicacao':
@@ -33,7 +33,7 @@ class operacao_soma(Operacao):
     def executar(self, valor1, valor2):
         return valor1 + valor2
 
-class operacao_divisão(Operacao):
+class operacao_divisao(Operacao):
     def executar(self, valor1, valor2):
         resultado = valor1 / valor2
         return resultado
@@ -51,9 +51,9 @@ class operacao_multiplicacao(Operacao):
 
 class ClasseTeste(TestCase):
 
-    def test_operacao_divisão(self):
+    def test_operacao_divisao(self):
         dividindo = Calculadora()
-        self.assertEqual(dividindo.calcular(10, 5, 'operacao_divisão'), 2)
+        self.assertEqual(dividindo.calcular(10, 5, 'operacao_divisao'), 2)
 
     def test_operacao_soma(self):
         operacao_somando = Calculadora()
