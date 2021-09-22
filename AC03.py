@@ -1,6 +1,18 @@
 from unittest import TestCase, main
 import abc
 
+class OperacaoFabrica(object):
+
+    def criar(self, operador):
+        if operador == 'operacao_soma':
+            return operacao_soma()
+        elif operador == 'operacao_divisão':
+            return operacao_divisão()
+        elif operador == 'operacao_subtracao':
+            return operacao_subtracao()
+        elif operador == 'operacao_multiplicacao':
+            return operacao_multiplicacao()
+
 class Calculadora(object):
     def calcular(self, valor1, valor2, operador):
         operacaoFabrica = OperacaoFabrica()
@@ -11,65 +23,54 @@ class Calculadora(object):
             resultado = operacao.executar(valor1, valor2)
             return resultado
 
-class OperacaoFabrica(object):
-
-    def criar(self, operador):
-        if operador == 'soma':
-            return Soma()
-        elif operador == 'divisao':
-            return Divisao()
-        elif operador == 'subtracao':
-            return Subtracao()
-        elif operador == 'multiplicacao':
-            return Multiplicacao()
 
 class Operacao(metaclass=abc.ABCMeta):
 
     def executar(self, valor1, valor2):
         pass
 
-class Soma(Operacao):
+class operacao_soma(Operacao):
     def executar(self, valor1, valor2):
         return valor1 + valor2
 
-class Divisao(Operacao):
+class operacao_divisão(Operacao):
     def executar(self, valor1, valor2):
         resultado = valor1 / valor2
         return resultado
 
-class Subtracao(Operacao):
+class operacao_subtracao(Operacao):
     def executar(self, valor1, valor2):
         resultado = valor1 - valor2
         return resultado
 
-class Multiplicacao(Operacao):
+class operacao_multiplicacao(Operacao):
     def executar(self, valor1, valor2):
         resultado = valor1 * valor2
         return resultado
 
 
-class Testes(TestCase):
+class ClasseTeste(TestCase):
 
-    def test_divisao(self):
+    def test_operacao_divisão(self):
         dividindo = Calculadora()
-        self.assertEqual(dividindo.calcular(10, 5, 'divisao'), 2)
+        self.assertEqual(dividindo.calcular(10, 5, 'operacao_divisão'), 2)
 
-    def test_soma(self):
-        somando = Calculadora()
-        self.assertEqual(somando.calcular(5, 5, 'soma'), 10)
+    def test_operacao_soma(self):
+        operacao_somando = Calculadora()
+        self.assertEqual(operacao_somando.calcular(5, 5, 'operacao_soma'), 10)
 
-    def test_subtracao(self):
+    def test_operacao_subtracao(self):
         calcular = Calculadora()
-        self.assertEqual(calcular.calcular(5, 6, 'subtracao'), -1)
+        self.assertEqual(calcular.calcular(5, 6, 'operacao_subtracao'), -1)
     
-    def test_multiplicacao(self):
+    def test_operacao_multiplicacao(self):
         calcular = Calculadora()
-        self.assertEqual(calcular.calcular(5, 5, 'multiplicacao'), 25)
+        self.assertEqual(calcular.calcular(5, 5, 'operacao_multiplicacao'), 25)
 
         
 
 duvida = Calculadora()
-x = duvida.calcular(5, 5, 'soma')
+x = duvida.calcular(5, 5, 'operacao_soma')
 
 
 if __name__ == '__main__':
